@@ -28,12 +28,29 @@
       color: #aaa;
       font-style: italic;
     }
+
+    /* SEARCH BAR */
+    .search-container {
+      text-align: center;
+      padding: 20px;
+    }
+    .search-container input {
+      padding: 10px;
+      width: 300px;
+      max-width: 90%;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: #eee;
+      font-size: 1rem;
+    }
+
     .champion-section {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 40px 20px;
+      padding: 20px;
     }
     .champ-card {
       background: #1b1b1b;
@@ -43,6 +60,10 @@
       width: 240px;
       text-align: center;
       box-shadow: 0 0 10px #ff0000aa;
+      transition: transform 0.2s ease;
+    }
+    .champ-card:hover {
+      transform: scale(1.03);
     }
     .champ-card img {
       width: 100%;
@@ -69,6 +90,12 @@
       font-size: 0.9rem;
       color: #ccc;
     }
+    .no-results {
+      color: #aaa;
+      font-style: italic;
+      text-align: center;
+      margin-top: 20px;
+    }
     footer {
       text-align: center;
       padding: 20px;
@@ -84,8 +111,12 @@
     <p>The Ultimate WWE Saga: Titles, Champions & History</p>
   </header>
 
-  <section class="champion-section">
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search champions, titles...">
+  </div>
 
+  <section class="champion-section" id="championSection">
+    <!-- CHAMPIONS BEGIN -->
     <div class="champ-card">
       <img src="Brock.png" alt="Brock Lesnar">
       <p>Undisputed Champion</p>
@@ -100,20 +131,21 @@
         </ul>
       </div>
     </div>
-<div class="champ-card">
-  <img src="SethRollins.png" alt="Seth Rollins">
-  <p>World Heavyweight Champion</p>
-  <p><strong>Seth Rollins</strong></p>
-  <button onclick="toggleHistory('whc')">Show History</button>
-  <div id="whc" class="history">
-    <ul>
-      <li>Randy Orton (28/10/2016 – 28/01/2017) — 92 days</li>
-      <li>Kane (30/04/2016 – 28/10/2016) — 181 days</li>
-      <li>Roman Reigns (28/04/2016 – 30/04/2016) — 2 days</li>
-      <li>Kane (1/04/2016 – 28/04/2016) — 27 days</li>
-    </ul>
-  </div>
-</div>
+
+    <div class="champ-card">
+      <img src="SethRollins.png" alt="Seth Rollins">
+      <p>World Heavyweight Champion</p>
+      <p><strong>Seth Rollins</strong></p>
+      <button onclick="toggleHistory('whc')">Show History</button>
+      <div id="whc" class="history">
+        <ul>
+          <li>Randy Orton (28/10/2016 – 28/01/2017) — 92 days</li>
+          <li>Kane (30/04/2016 – 28/10/2016) — 181 days</li>
+          <li>Roman Reigns (28/04/2016 – 30/04/2016) — 2 days</li>
+          <li>Kane (1/04/2016 – 28/04/2016) — 27 days</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="champ-card">
       <img src="Ziggler.png" alt="Dolph Ziggler">
@@ -162,8 +194,10 @@
         </ul>
       </div>
     </div>
-
+    <!-- CHAMPIONS END -->
   </section>
+
+  <p id="noResults" class="no-results" style="display:none;">No champions match your search.</p>
 
   <footer>
     WWE 2K16 Universe Mode © 2025 | Made by a REAL one
@@ -174,7 +208,27 @@
       const el = document.getElementById(id);
       el.style.display = el.style.display === "none" ? "block" : "none";
     }
+
+    // SEARCH FUNCTION
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".champ-card");
+    const noResults = document.getElementById("noResults");
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const match = text.includes(query);
+        card.style.display = match ? "block" : "none";
+        if (match) visibleCount++;
+      });
+
+      noResults.style.display = visibleCount === 0 ? "block" : "none";
+    });
   </script>
 
 </body>
 </html>
+
