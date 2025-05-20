@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WWE 2K16 Universe Mode - RAW Roster</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #111;
+      color: #eee;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    header {
+      background-color: #c62828; /* RAW red */
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 4px solid #7b0000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 2px 2px 6px #700000;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-style: italic;
+      font-weight: 600;
+      color: #ffc1c1;
+    }
+
+    nav {
+      background-color: #1b1b1b;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      border-bottom: 1px solid #330000;
+    }
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+    nav a:hover, nav a.active {
+      color: #ff3b3b;
+      border-bottom: 2px solid #ff3b3b;
+      padding-bottom: 4px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Search bar */
+    .search-bar {
+      max-width: 400px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 40px 12px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #2b2b2b;
+      color: #eee;
+      box-shadow: inset 1px 1px 5px #000000cc;
+      outline: none;
+      transition: background-color 0.3s ease;
+    }
+    .search-bar input::placeholder {
+      color: #aaa;
+    }
+    .search-bar svg {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      fill: #ff3b3b;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    /* Roster grid */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+    }
+
+    .superstar-card {
+      background: #1c1c1c;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #7b0000aa;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .superstar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px #ff3b3bcc;
+    }
+
+    .superstar-card img {
+      width: 100%;
+      display: block;
+      border-bottom: 3px solid #ff3b3b;
+      object-fit: cover;
+      height: 230px;
+      transition: filter 0.3s ease;
+    }
+    .superstar-card:hover img {
+      filter: brightness(1.1);
+    }
+
+    .superstar-info {
+      padding: 15px 12px;
+      text-align: center;
+    }
+
+    .superstar-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Alignment badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 20px;
+      text-transform: uppercase;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      letter-spacing: 0.7px;
+    }
+    .face {
+      background-color: #4caf50;
+      color: #d0f0c0;
+      box-shadow: 0 0 8px #4caf50aa;
+    }
+    .heel {
+      background-color: #e53935;
+      color: #f9bdbd;
+      box-shadow: 0 0 8px #e53935aa;
+    }
+    .tweener {
+      background-color: #fbc02d;
+      color: #fff7c0;
+      box-shadow: 0 0 8px #fbc02daa;
+    }
+
+    /* Injured banner */
+    .injured-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ff3b3b;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      box-shadow: 0 0 8px #ff3b3baa;
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #666;
+      border-top: 1px solid #330000;
+      margin-top: 60px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>WWE 2K16 Universe Mode - RAW Roster</h1>
+    <p>The Ultimate WWE RAW Superstars Lineup</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="rosters.html" class="active">RAW Roster</a>
+    <a href="#">Universe Mode</a>
+    <a href="#">Champions</a>
+  </nav>
+
+  <main class="container">
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search Superstars by name..." onkeyup="filterRoster()" />
+      <svg viewBox="0 0 24 24">
+        <path d="M21.71 20.29l-3.388-3.388a8.5 8.5 0 10-1.414 1.414l3.388 3.388a1 1 0 001.414-1.414zM10.5 17a6.5 6.5 0 116.5-6.5 6.508 6.508 0 01-6.5 6.5z"/>
+      </svg>
+    </div>
+
+    <section class="roster-grid" id="rosterGrid">
+
+      <!-- Superstar cards generated by JS -->
+
+    </section>
+  </main>
+
+  <footer>
+    WWE 2K16 Universe Mode © 2025 | Made by a REAL one
+  </footer>
+
+  <script>
+    // RAW Roster data
+    const roster = [
+      { name: "Alexa Bliss", alignment: "heel", img: "Bliss.png" },
+      { name: "Bad News Barrett", alignment: "heel", img: "BadNews.png" },
+      { name: "Batista", alignment: "heel", img: "Batista.png" },
+      { name: "Big Show", alignment: "heel", img: "Show.png" },
+      { name: "Bo Dallas", alignment: "face", img: "Bolieve.png" },
+      { name: "Brie Bella", alignment: "face", img: "Brie.png" },
+      { name: "Cesaro", alignment: "heel", img: "Cesaro.png" },
+      { name: "Chris Jericho", alignment: "face", img: "Jericho.png" },
+      { name: "Curtis Axel", alignment: "face", img: "Axel.png" },
+      { name: "Dean Ambrose", alignment: "tweener", img: "Dean.png" },
+      { name: "Dolph Ziggler", alignment: "face", img: "Ziggler.png" },
+      { name: "Fandango", alignment: "face", img: "Fandango.png" },
+      { name: "Jack Swagger", alignment: "face", img: "Swagger.png" },
+      { name: "The Usos", alignment: "face", img: "TheUsos.png" },
+      { name: "Kalisto", alignment: "face", img: "Kalisto.png" },
+      { name: "Kane", alignment: "heel", img: "Kane.png" },
+      { name: "The Ascension", alignment: "heel", img: "Ascension.png" },
+      { name: "Mark Henry", alignment: "heel", img: "MarkHenry.png" },
+      { name: "The Miz", alignment: "heel", img: "TheMiz.png" },
+      { name: "Natalya", alignment: "face", img: "Natalya.png" },
+      { name: "Neville", alignment: "face", img: "Neville.png" },
+      { name: "Paige", alignment: "heel", img: "Paige.png" },
+      { name: "R-Truth", alignment: "face", img: "Truth.png" },
+      { name: "Randy Orton", alignment: "face", img: "Orton.png" },
+      { name: "Roman Reigns", alignment: "tweener", img: "Roman.png" },
+      { name: "Ryback", alignment: "face", img: "Ryback.png", injured: true },
+      { name: "Sasha Banks", alignment: "heel", img: "Sasha.png" },
+      { name: "Seth Rollins", alignment: "tweener", img: "SethRollins.png" },
+      { name: "Sheamus", alignment: "heel", img: "Sheamus.png" },
+      { name: "Sin Cara", alignment: "face", img: "SinCara.png" },
+      { name: "Steph McMahon", alignment: "heel", img: "Steph.png" },
+      { name: "Sting", alignment: "face", img: "Sting.png" },
+      { name: "Summer Rae", alignment: "heel", img: "Summer.png" },
+      { name: "Tamina", alignment: "heel", img: "Tamina.png" },
+      { name: "Triple H", alignment: "heel", img: "HHH.png" },
+      { name: "Zack Ryder", alignment: "face", img: "Ryder.png" },
+    ];
+
+    const rosterGrid = document.getElementById('rosterGrid');
+
+    // Create superstar cards dynamically
+    function createCard(superstar) {
+      const card = document.createElement('div');
+      card.className = 'superstar-card';
+
+      card.innerHTML = `
+        ${superstar.injured ? '<div class="injured-tag">Injured</div>' : ''}
+        <img src="images/superstars/${superstar.img}" alt="${superstar.name}" loading="lazy" />
+        <div class="superstar-info">
+          <div class="superstar-name">${superstar.name}</div>
+          <span class="badge ${superstar.alignment}">${superstar.alignment}</span>
+        </div>
+      `;
+      return card;
+    }
+
+    // Render all cards
+    function renderRoster(filteredRoster) {
+      rosterGrid.innerHTML = '';
+      if(filteredRoster.length === 0) {
+        rosterGrid.innerHTML = '<p style="color:#fff; grid-column: 1/-1; text-align:center; font-weight: 700;">No superstars found.</p>';
+        return;
+      }
+      filteredRoster.forEach(s => {
+        rosterGrid.appendChild(createCard(s));
+      });
+    }
+
+    // Filter by search
+    function filterRoster() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = roster.filter(s => s.name.toLowerCase().includes(query));
+      renderRoster(filtered);
+    }
+
+    // Initialize
+    renderRoster(roster);
+  </script>
+</body>
+</html>
