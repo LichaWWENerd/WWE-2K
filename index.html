@@ -3,134 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WWE 2K16 Universe</title>
-
-  <!-- Font & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Optional Favicon -->
-  <link rel="icon" href="favicon.ico" />
+  <title>WWE 2K16 Universe Mode</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #111, #3b0000);
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 40px 10px 20px;
+      background-color: #000;
+      border-bottom: 4px solid #ff0000;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #aaa;
+      font-style: italic;
+    }
+    .champion-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+    .champ-card {
+      background: #1b1b1b;
+      border: 2px solid #ff0000;
+      border-radius: 12px;
+      padding: 20px;
+      width: 240px;
+      text-align: center;
+      box-shadow: 0 0 10px #ff0000aa;
+    }
+    .champ-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .champ-card p {
+      margin: 5px 0;
+      font-weight: bold;
+    }
+    .champ-card button {
+      background: crimson;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .history {
+      margin-top: 10px;
+      text-align: left;
+      display: none;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
 </head>
 <body>
-
-  <!-- NAVIGATION -->
   <header>
-    <nav class="navbar">
-      <h1 class="logo">WWE 2K16 Universe</h1>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="roster.html">Roster</a></li>
-        <li><a href="titles.html">Champions</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="rivalries.html">Rivalries</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-      </ul>
-    </nav>
+    <h1>WWE 2K16 Universe Mode</h1>
+    <p>The Ultimate WWE Saga: Titles, Champions & History</p>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Main Event: Roman Reigns vs AJ Styles</h2>
-      <p>See what went down on last night’s RAW!</p>
-      <a href="results.html" class="btn">View Results</a>
-    </div
-/* style.css */
+  <section class="champion-section">
 
-body {
-  margin: 0;
-  font-family: 'Oswald', sans-serif;
-  background-color: #000;
-  color: #fff;
-}
+    <div class="champ-card">
+      <img src="Brock.png" alt="Brock Lesnar">
+      <p>Undisputed Champion</p>
+      <p><strong>Brock Lesnar</strong></p>
+      <button onclick="toggleHistory('undisputed')">Show History</button>
+      <div id="undisputed" class="history">
+        <ul>
+          <li>The Rock (28/08/2016 – 28/12/2016) — 122 days</li>
+          <li>Seth Rollins (28/07/2016 – 28/08/2016) — 31 days</li>
+          <li>Brock Lesnar (28/04/2016 – 28/07/2016) — 91 days</li>
+          <li>Seth Rollins (01/04/2016 – 28/04/2016) — 27 days</li>
+        </ul>
+      </div>
+    </div>
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #111;
-  padding: 1rem 2rem;
-}
+    <div class="champ-card">
+      <img src="Ziggler.png" alt="Dolph Ziggler">
+      <p>Intercontinental Champion</p>
+      <p><strong>Dolph Ziggler</strong></p>
+      <button onclick="toggleHistory('ic')">Show History</button>
+      <div id="ic" class="history">
+        <ul>
+          <li>Ryback (1/04/2016 – 28/04/2016) — 27 days</li>
+          <li>Dolph Ziggler (28/04/2016 – 28/06/2016) — 61 days</li>
+          <li>Big Show (28/06/2016 – 28/07/2016) — 30 days</li>
+          <li>Cesaro (28/07/2016 – 28/08/2016) — 31 days</li>
+          <li>Sheamus (28/08/2016 – 9/11/2016) — 73 days</li>
+          <li>Ryback (9/11/2016 – 28/11/2016) — 19 days</li>
+          <li>Dolph Ziggler (28/11/2016 – Ongoing)</li>
+        </ul>
+      </div>
+    </div>
 
-.logo {
-  color: #e32636;
-  font-size: 1.8rem;
-}
+    <div class="champ-card">
+      <img src="BadNews.png" alt="Bad News Barrett">
+      <p>United States Champion</p>
+      <p><strong>Bad News Barrett</strong></p>
+      <button onclick="toggleHistory('us')">Show History</button>
+      <div id="us" class="history">
+        <ul>
+          <li>John Cena (1/04/2016 – 28/08/2016) — 149 days</li>
+          <li>Kevin Owens (28/08/2016 – 28/09/2016) — 31 days</li>
+          <li>John Cena (28/09/2016 – 28/10/2016) — 30 days</li>
+          <li>Bad News Barrett (28/10/2016 – Ongoing)</li>
+        </ul>
+      </div>
+    </div>
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
+    <div class="champ-card">
+      <img src="Paige.png" alt="Paige">
+      <p>RAW & SD Women’s Champion</p>
+      <p><strong>Paige</strong></p>
+      <button onclick="toggleHistory('women')">Show History</button>
+      <div id="women" class="history">
+        <ul>
+          <li>Nikki Bella (1/04/2016 – 28/07/2016) — 118 days</li>
+          <li>Naomi (28/07/2016 – 28/10/2016) — 92 days</li>
+          <li>AJ Lee (28/10/2016 – 28/11/2016) — 31 days</li>
+          <li>Paige (28/11/2016 – Ongoing)</li>
+        </ul>
+      </div>
+    </div>
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+  </section>
 
-.nav-links a:hover {
-  color: #e32636;
-}
+  <footer>
+    WWE 2K16 Universe Mode © 2025 | Made by a REAL one
+  </footer>
 
-.hero {
-  background: url('images/hero.jpg') no-repeat center center/cover;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+  <script>
+    function toggleHistory(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === "none" ? "block" : "none";
+    }
+  </script>
 
-.hero-content {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 2rem;
-  border-radius: 12px;
-}
-
-.hero-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #e32636;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-radius: 5px;
-}
-
-.news {
-  padding: 2rem;
-}
-
-.news-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.card {
-  background: #111;
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-}
-
-footer {
-  background: #111;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-}
+</body>
+</html>
